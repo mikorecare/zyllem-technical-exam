@@ -4,7 +4,6 @@ import { AbstractArticleComponent } from "./abstract.article.component";
 import { articleMapper } from "./article.mapper";
 import { ArticleFeatureComponent } from "./feature/article.feature.component";
 import { ArticleNormalComponent } from "./normal/article.normal.component";
-import { ArticleVideoComponent } from "./video/article.video.component";
 
 export const articleEntries: Type<AbstractArticleComponent>[] = [
     ArticleFeatureComponent,
