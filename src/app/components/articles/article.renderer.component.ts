@@ -1,29 +1,35 @@
 import {
     Component, ComponentFactoryResolver, Input,
+    OnChanges,
     OnInit, ViewContainerRef
 } from "@angular/core";
-import { Article } from "src/app/model/article";
+import { Article, FeaturedAdArticle, FeaturedArticle, NormalArticle, VideoArticle } from "src/app/model/article";
 import { articleMapper } from "./article.mapper";
 
+import { ArticleRegistrationService } from "./article.entries";
 @Component({
     selector: 'article-renderer-component',
-    template: ''
+    template: '<ng-template></ng-template>'
 })
-export class ArticleRendererComponent implements OnInit {
+export class ArticleRendererComponent implements OnChanges {
 
     @Input() articles!: Article[];
 
     constructor(
         private readonly viewContainerRef: ViewContainerRef,
-        private readonly componentFactoryResolver: ComponentFactoryResolver
+        private readonly componentFactoryResolver: ComponentFactoryResolver,
+        private regService: ArticleRegistrationService
     ) { }
 
-    ngOnInit() {
+    ngOnChanges() {
+        this.regService.registerDefaultArticles();
         for (const article of this.articles) {
             const resolveArticle = articleMapper.get(article.type);
-
+           
             if (resolveArticle) {
+                console.log("resolved article",article.title)
                 const componentFactory = this.componentFactoryResolver.resolveComponentFactory(resolveArticle);
+                // console.log(componentFactory)
                 const componentRef = this.viewContainerRef.createComponent(componentFactory);
 
                 const hostElement = <HTMLElement>componentRef.location.nativeElement;
@@ -31,7 +37,29 @@ export class ArticleRendererComponent implements OnInit {
                 hostElement.classList.add('article-item');
                 hostElement.insertAdjacentElement("afterbegin", this.addArticleTitle(article.title));
 
-                componentRef.instance.article = article;
+                switch (article.type) {
+                    case "FEATURED_AD":
+                      if ('adBannerUrl' in article) {
+                        componentRef.instance.article = article as FeaturedAdArticle;
+                      }
+                      break;
+                    case "FEATURED":
+                      if ('featureImgUrl' in article) {
+                        componentRef.instance.article = article as FeaturedArticle;
+                      }
+                      break;
+                    case "VIDEO":
+                      if ('videoUrl' in article) {
+                        componentRef.instance.article = article as VideoArticle;
+                      }
+                      break;
+                    case "NORMAL":
+                        if ('description' in article) {
+                          componentRef.instance.article = article as NormalArticle;
+                        }
+                    break;
+           
+                  }
                 componentRef.changeDetectorRef.detectChanges();
             } else {
                 console.warn(`component not implemented yet for this type ${article.type}.`);
@@ -46,4 +74,5 @@ export class ArticleRendererComponent implements OnInit {
         heading.title = title;
         return heading;
     }
+
 }
