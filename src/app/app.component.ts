@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { ZyllemApiService } from "./app.service";
-import { Article, VideoArticle } from './model/article';
+import { Article, ArticleType, VideoArticle } from './model/article';
 
 @Component({
   selector: 'app-root',
@@ -20,20 +20,24 @@ export class AppComponent implements OnInit {
   ) { }
 
   private results!: Article[];
+  private filteredResults!:Article[];
+  filter:string = 'All';
   videoArticleHighlight!: VideoArticle;
   test:any = []
 
   get articles() {
-    return this.results;
+    return this.filteredResults;
   }
 
   ngOnInit(): void {
     this.apiService.getArticles()
       .subscribe(result => {
+
         if(result){
           this.videoArticleHighlights(result)
+          
         }
-        this.cdr.markForCheck();
+        this.cdr.markForCheck()
         console.log("video article highlight",this.videoArticleHighlight);
         console.log("final article array",this.results);
       });
@@ -48,7 +52,26 @@ export class AppComponent implements OnInit {
       
       results.splice(index, 1);
     }
+    
     this.results = results;
+
+
+    this.articleFilter();
   }
 
+  logMe(){
+    console.log(this.filter);
+  }
+
+  articleFilter(): void {
+    if (this.filter === 'All') {
+      this.filteredResults = this.results;
+    } else {
+      const filteredType: ArticleType = this.filter.toUpperCase() as ArticleType;
+      this.filteredResults = this.results.filter(res => res.type === filteredType);
+    }
+  
+    // Trigger change detection manually
+    this.cdr.detectChanges();
+  }
 }
