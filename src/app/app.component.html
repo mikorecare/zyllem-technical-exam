@@ -23,6 +23,13 @@
 
   <!-- To put the articles inside this container -->
   <div class="article-container">
+    <select class="article-selector" [(ngModel)]="filter" (change)="articleFilter()">
+      <option>All</option>
+      <option>Normal</option>
+      <option>Video</option>
+      <option>Featured</option>
+      <option>Featured_Ad</option>
+    </select>
     <div class="article-list-holder">
       <ng-container *ngIf="articles">
         <article-renderer-component [articles]="articles"></article-renderer-component>
