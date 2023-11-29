@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FeaturedAdArticle } from 'src/app/model/article';
+import { AbstractArticleComponent } from '../abstract.article.component';
 
 @Component({
   selector: 'app-feature',
   templateUrl: './article.feature.component.html',
-  styleUrls: ['./article.feature.component.css']
 })
-export class ArticleFeatureComponent {
-
+export class ArticleFeatureComponent extends AbstractArticleComponent {
+  @Input() article!: FeaturedAdArticle;
 }
