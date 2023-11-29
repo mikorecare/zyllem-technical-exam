@@ -1,27 +1,27 @@
 
 export abstract class Article {
-    id: string
-    title: string;
-    author: string;
-    publishedAt: string; //date time in ISO format 
-    url: string;
-    type: ArticleType;
+    id!: string;
+    title!: string;
+    author!: string;
+    publishedAt!: string; //date time in ISO format 
+    url!: string;
+    type!: ArticleType;
 }
 
 export class NormalArticle extends Article {
-    description: string;
+    description!: string;
 }
 
 export class FeaturedArticle extends  Article{
-    featureImgUrl: string;
+    featureImgUrl!: string;
 }
 
 export class VideoArticle extends  Article{
-    videoUrl: string;
+    videoUrl!: string;
 }
 
 export class FeaturedAdArticle extends  Article{
-    adBannerUrl: string;
+    adBannerUrl!: string;
 }
 
 export enum ArticleType {
