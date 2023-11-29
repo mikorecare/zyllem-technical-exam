@@ -116,5 +116,8 @@
         }
       }
     }},
-  "defaultProject": "zyllem-front-end-test"
+  "defaultProject": "zyllem-front-end-test",
+  "cli": {
+    "analytics": false
+  }
 }
