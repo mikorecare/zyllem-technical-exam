@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef
   ) { }
 
-  public results!: Article[];
+  private results!: Article[];
   videoArticleHighlight!: VideoArticle;
+  test:any = []
 
   get articles() {
     return this.results;
@@ -30,12 +31,24 @@ export class AppComponent implements OnInit {
     this.apiService.getArticles()
       .subscribe(result => {
         if(result){
-          this.results = result;
+          this.videoArticleHighlights(result)
         }
         this.cdr.markForCheck();
+        console.log("video article highlight",this.videoArticleHighlight);
+        console.log("final article array",this.results);
       });
-
-      
-      
   }
+
+   videoArticleHighlights(results:Article[]):void{
+    let videoArticle : VideoArticle[]= results.filter(res =>res.type === "VIDEO") as VideoArticle [];
+    this.videoArticleHighlight = videoArticle.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime())[0];
+    
+    let index = results.findIndex(article=> article.id === this.videoArticleHighlight.id);
+    if (index !== -1) {
+      
+      results.splice(index, 1);
+    }
+    this.results = results;
+  }
+
 }
