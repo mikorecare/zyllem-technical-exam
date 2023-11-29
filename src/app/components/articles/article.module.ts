@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { articleEntries } from "./article.entries";
 import { ArticleRendererComponent } from "./article.renderer.component";
+import { FeatureComponent } from './feature/feature.component';
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import { ArticleRendererComponent } from "./article.renderer.component";
     ],
     declarations: [
         ...articleEntries,
-        ArticleRendererComponent
+        ArticleRendererComponent,
+        FeatureComponent
     ],
     entryComponents: [
         ...articleEntries
