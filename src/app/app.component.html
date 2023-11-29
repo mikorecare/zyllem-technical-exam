@@ -13,7 +13,8 @@
 
   <div class="article-video">
     <ng-container *ngIf="videoArticleHighlight">
-      <!-- put the title and the article video component here -->
+      <h2>{{videoArticleHighlight.title}}</h2>
+      <article-video-component [article]="videoArticleHighlight"></article-video-component>
     </ng-container>
   </div>
 
