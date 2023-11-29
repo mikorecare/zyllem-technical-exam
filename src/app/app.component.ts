@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef
   ) { }
 
-  private results!: Article[];
+  public results!: Article[];
   videoArticleHighlight!: VideoArticle;
 
   get articles() {
@@ -29,8 +29,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getArticles()
       .subscribe(result => {
-        this.results = result;
+        if(result){
+          this.results = result;
+        }
         this.cdr.markForCheck();
       });
+
+      
+      
   }
 }
