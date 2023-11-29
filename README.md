@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Zyllem Front End Test
 
 ## Requirement
@@ -27,3 +28,6 @@ Recommend to use [Visual Studio Code](https://code.visualstudio.com/) and [Angul
 2. Allow to filter by article type for the list
 3. Implement the component for Feature Ad
 4. Follow the expected mock up design (article list should be responsive). See the mock design here src\assets\mock-up.png
+=======
+# zyllem-technical-exam
+>>>>>>> origin/master
