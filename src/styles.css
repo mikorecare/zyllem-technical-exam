@@ -23,6 +23,16 @@ html, body {
     max-height: 100%;
     padding: 5px;
     position: relative;
+    transition: padding 0.5s ease;
+    
+}
+
+.article-item:hover{
+    cursor: pointer;
+    padding: 20px;
+    margin: 0 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-size: medium;
 }
 
 .article-item h2 {
@@ -31,6 +41,13 @@ html, body {
     white-space: nowrap;
     font-size: large;
 }
+
+.article-item p {
+    color:rgb(85, 85, 85);
+    font-size: small;
+    overflow: hidden;
+}
+
 
 .article-item img{
     align-self: self-start;
