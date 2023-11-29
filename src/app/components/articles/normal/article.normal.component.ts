@@ -9,5 +9,5 @@ import { AbstractArticleComponent } from "../abstract.article.component";
 })
 export class ArticleNormalComponent extends AbstractArticleComponent {
 
-    @Input() article: NormalArticle;
+    @Input() article!: NormalArticle;
 }
