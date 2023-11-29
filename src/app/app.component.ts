@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef
   ) { }
 
-  private results: Article[];
-  videoArticleHighlight: VideoArticle;
+  private results!: Article[];
+  videoArticleHighlight!: VideoArticle;
 
   get articles() {
     return this.results;
