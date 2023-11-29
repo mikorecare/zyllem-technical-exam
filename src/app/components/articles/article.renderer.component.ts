@@ -9,7 +9,7 @@ import { articleMapper } from "./article.mapper";
 import { ArticleRegistrationService } from "./article.entries";
 @Component({
     selector: 'article-renderer-component',
-    template: '<ng-template></ng-template>'
+    template: ''
 })
 export class ArticleRendererComponent implements OnChanges {
 
