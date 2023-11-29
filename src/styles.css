@@ -5,24 +5,29 @@ html, body {
     overflow-x: hidden;
 }
 
-
+article-renderer-component{
+    display: none;
+}
 
 .article-list-holder{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     padding: 2rem 3rem 2rem 3rem;
 }
 
 .article-item {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     border:1px solid;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width:300px;
+    width: 240px;
     max-width: 100%;
-    height: 250px;
+    height: 220px;
     max-height: 100%;
     padding: 5px;
     position: relative;
@@ -32,9 +37,8 @@ html, body {
 
 .article-item:hover{
     cursor: pointer;
-    padding: 20px;
+    padding: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    font-size: medium;
     margin:0;
 }
 
@@ -53,9 +57,9 @@ html, body {
 
 
 .article-item img{
-    align-self: self-start;
     width: 100%;
-    max-height:200px;
+    max-height: 160px;
+    margin-bottom: 5px;
 }
 
 .article-selector{
