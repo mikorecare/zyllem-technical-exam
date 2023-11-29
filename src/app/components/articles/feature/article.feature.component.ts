@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FeaturedAdArticle } from 'src/app/model/article';
+import { FeaturedAdArticle, FeaturedArticle } from 'src/app/model/article';
 import { AbstractArticleComponent } from '../abstract.article.component';
 
 @Component({
@@ -7,5 +7,5 @@ import { AbstractArticleComponent } from '../abstract.article.component';
   templateUrl: './article.feature.component.html',
 })
 export class ArticleFeatureComponent extends AbstractArticleComponent {
-  @Input() article!: FeaturedAdArticle;
+  @Input() article!: FeaturedArticle;
 }
