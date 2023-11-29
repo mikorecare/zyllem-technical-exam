@@ -11,7 +11,7 @@ import { articleMapper } from "./article.mapper";
 })
 export class ArticleRendererComponent implements OnInit {
 
-    @Input() articles: Article[];
+    @Input() articles!: Article[];
 
     constructor(
         private readonly viewContainerRef: ViewContainerRef,
