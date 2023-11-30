@@ -5,9 +5,12 @@
   
     <!-- Feel free to remove this holder -->
     <h3 class="title-h3">Put below a recently published video article given there is one or more video article types in the list.</h3>
-  
+    <ng-container *ngIf="isLoading">
+      <h1 class="spinner" style="margin: 0 auto;"></h1>
+    </ng-container>
     <div class="article-video" (click)="goto()">
-      <ng-container *ngIf="videoArticleHighlight">
+
+      <ng-container *ngIf="videoArticleHighlight && !isLoading">
         <h2>{{videoArticleHighlight.title}}</h2>
         <article-video-component [article]="videoArticleHighlight"></article-video-component>
       </ng-container>
@@ -27,7 +30,10 @@
         <option>Featured_Ad</option>
       </select>
       <div class="article-list-holder">
-        <ng-container *ngIf="articles">
+        <ng-container *ngIf="isLoading">
+            <div class="spinner"></div>
+        </ng-container>
+        <ng-container *ngIf="articles  && !isLoading">
           <article-renderer-component [articles]="articles"></article-renderer-component>
         </ng-container>
       </div>
