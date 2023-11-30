@@ -7,7 +7,8 @@
 }
 
 .article-container{
+    margin-top:5rem;
     width:900px;
-    height:3000px;
+    height:500px;
     border: 1px solid black;
 }
