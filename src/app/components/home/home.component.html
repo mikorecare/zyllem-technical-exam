@@ -4,7 +4,7 @@
     <h2 class="title-h2">Articles</h2>
   
     <!-- Feel free to remove this holder -->
-    <h3 class="title-h3">Put below a recently published video article given there is one or more video article types in the list.</h3>
+    <h3 class="title-h3">Featured Video</h3>
     <ng-container *ngIf="isLoading">
       <h1 class="spinner"></h1>
       <br>
@@ -19,7 +19,7 @@
     </div>
   
     <!-- Feel free to remove this holder -->
-    <h3>List of article goes here: (do not include the recently published video article in the list if you already placed it at the top)</h3>
+    <h3>List of Articles</h3>
   
     <!-- To put the articles inside this container -->
     <div class="article-container">
@@ -40,22 +40,5 @@
         </ng-container>
       </div>
     </div><!--.article-container-->
-    
-    <div class="bonus-point-container">
-      <h3>Instructions:</h3>
-      <ul>
-        <li>Fix the build</li>
-        <li>Allow to filter by article type for the list</li>
-        <li>Implement the missing component</li>
-        <li>Follow the expected mock up design (article list should be responsive) <a href="assets/mock-up.png" target="_mockup">see the mock design here</a></li>
-      </ul>
-  
-      <h3>Bonus Points:</h3>
-      <ul>
-        <li>Apply a nice template for the article list</li>
-        <li>Get real data from an API to replace our mock data</li>
-        <li>Apply angular router to show an article detail page when you open it from the list</li>
-      </ul>
-    </div> <!--.bonus-point-container -->
   </div>
   
