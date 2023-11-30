@@ -1,6 +1,25 @@
 
-<div class="main-body">
+<article class="main-body">
     <div class="article-container">
+        <h2 class="article-title">{{article.title}}</h2>
+        <p>
+            <span>By {{article.author}}</span>
+            <span> · </span>
+            <span>{{article.publishedAt | date:'MMMM dd, yyyy'}}</span>
+        </p>    
+        <div class="article-content" [ngSwitch]="article.type"> 
+      
+                <article-normal-component *ngSwitchCase="'NORMAL'" [article]="article" class="normal"></article-normal-component>
 
+     
+                <article-video-component *ngSwitchCase="'VIDEO'" [article]="article" class="video"></article-video-component>
+
+   
+                <app-feature *ngSwitchCase="'FEATURED'" [article]="article" class="feature"></app-feature>
+
+       
+                <app-feature-ad *ngSwitchCase="'FEATURED_AD'" [article]="article" class="feature-ad"></app-feature-ad>
+
+        </div>
     </div>
-</div>
+</article>
