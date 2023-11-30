@@ -1,3 +1,22 @@
-:host {
+@keyframes fadeInAndScale {
+    0% {
+    text-align: center;  
+    opacity: 0;
+    transform: scale(0.5);
+    }
+    100% {
+    text-align: center;
+    opacity: 1;
+    transform: scale(1);
+    }
+  }
 
+.logo{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  animation: fadeInAndScale 1s ease-in-out;
 }
