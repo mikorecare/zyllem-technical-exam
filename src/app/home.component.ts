@@ -2,7 +2,7 @@ import {
     ChangeDetectionStrategy, ChangeDetectorRef, Component,
     OnInit
   } from '@angular/core';
-  
+  import { ApiService } from './services/api.service';
   import { ZyllemApiService } from "./app.service";
   import { Article, ArticleType, VideoArticle } from './model/article';
   import {Router} from '@angular/router'
@@ -14,9 +14,10 @@ import {
 })
 export class HomeComponent implements OnInit {
     constructor(
-        private readonly apiService: ZyllemApiService,
+        // private readonly apiService: ZyllemApiService,
         private readonly cdr: ChangeDetectorRef,
-        private router: Router
+        private router: Router,
+        private api:ApiService
       ) { }
     
       private results!: Article[];
@@ -30,17 +31,29 @@ export class HomeComponent implements OnInit {
       }
     
       ngOnInit(): void {
-        this.apiService.getArticles()
-          .subscribe(result => {
-    
+        this.api.get('/articles')
+        .then((result)=>{
+            console.log("result")
             if(result){
-              this.videoArticleHighlights(result)
+                this.videoArticleHighlights(result)  
+              }
+              console.log("video article highlight",this.videoArticleHighlight);
+              console.log("final article array",this.results);
+        })
+        .catch((err)=>{
+            console.warn(err)
+        })
+        // this.apiService.getArticles()
+        //   .subscribe(result => {
+    
+        //     if(result){
+        //       this.videoArticleHighlights(result)
               
-            }
-            this.cdr.markForCheck()
-            console.log("video article highlight",this.videoArticleHighlight);
-            console.log("final article array",this.results);
-          });
+        //     }
+        //     this.cdr.markForCheck()
+        //     console.log("video article highlight",this.videoArticleHighlight);
+        //     console.log("final article array",this.results);
+        //   });
       }
     
        videoArticleHighlights(results:Article[]):void{
