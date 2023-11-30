@@ -75,6 +75,6 @@ export class HomeComponent implements OnInit {
       }
     
       goto(){
-        this.router.navigate(['/details']);
+        this.router.navigate(['/details'],{queryParams:{info:encodeURIComponent(JSON.stringify(this.videoArticleHighlight))}});
       }
 }
