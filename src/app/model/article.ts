@@ -1,6 +1,6 @@
 
 export abstract class Article {
-    id!: string;
+    _id!: string;
     title!: string;
     author!: string;
     publishedAt!: string; //date time in ISO format 
