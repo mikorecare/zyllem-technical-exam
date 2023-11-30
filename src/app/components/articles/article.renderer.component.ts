@@ -5,8 +5,8 @@ import {
 } from "@angular/core";
 import { Article, FeaturedAdArticle, FeaturedArticle, NormalArticle, VideoArticle } from "src/app/model/article";
 import { articleMapper } from "./article.mapper";
-
 import { ArticleRegistrationService } from "./article.entries";
+import {Router} from '@angular/router'
 @Component({
     selector: 'article-renderer-component',
     template: ''
@@ -18,7 +18,8 @@ export class ArticleRendererComponent implements OnChanges {
     constructor(
         private readonly viewContainerRef: ViewContainerRef,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
-        private regService: ArticleRegistrationService
+        private regService: ArticleRegistrationService,
+        private route : Router
     ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -35,14 +36,18 @@ export class ArticleRendererComponent implements OnChanges {
             const resolveArticle = articleMapper.get(article.type);
            
             if (resolveArticle) {
-                console.log("resolved article",article.title)
+                console.log("resolved article",article)
                 const componentFactory = this.componentFactoryResolver.resolveComponentFactory(resolveArticle);
                 // console.log(componentFactory)
                 const componentRef = this.viewContainerRef.createComponent(componentFactory);
 
                 const hostElement = <HTMLElement>componentRef.location.nativeElement;
-
+                const routerLink = `/details`;
                 hostElement.classList.add('article-item');
+                hostElement.addEventListener('click', () => 
+                  this.route.navigate([routerLink],{queryParams:{info:encodeURIComponent(JSON.stringify(article))}})
+                );
+                
                 hostElement.insertAdjacentElement("afterbegin", this.addArticleTitle(article.title));
 
                 switch (article.type) {
