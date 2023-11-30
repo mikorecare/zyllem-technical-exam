@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ZyllemApiService } from './app.service';
 import { ArticleModule } from './components/articles';
-import { HomeComponent } from './home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 import { ViewDetailsComponent } from './components/view-details/view-details.component';
 import { HttpClientModule } from '@angular/common/http';
