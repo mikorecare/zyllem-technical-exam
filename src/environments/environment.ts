@@ -7,6 +7,12 @@ export const environment = {
   API_URL: "http://localhost:3333/api/v1",
 };
 
+export const live = {
+  production:false,
+  API_URL: " https://recare-miko-server.onrender.com/api/v1"
+}
+//Usage of online API --- Please bear with API, it will go on hibernate mode as I am just using a free service :3
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
