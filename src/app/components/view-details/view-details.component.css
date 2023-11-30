@@ -7,10 +7,61 @@
 }
 
 .article-container{
+    padding:20px;
+    display: flex-start;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     margin-top:5rem;
     width:900px;
     height:500px;
     border: 1px solid black;
+    max-width: 100%;
+    overflow: hidden;
 }
+
+.article-container h2,p{
+    text-align: center;
+}
+
+.article-container p{
+    font-size: small;
+    line-height: 2;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.article-content {
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center;
+    height: 80%;
+    overflow: hidden;
+}
+
+
+
+.article-content app-feature,
+.article-content app-feature-ad {
+    display: flex;
+    justify-content:center;
+    max-height: 100%;
+    width: 100%;
+    overflow: hidden; 
+}
+
+
+
+.article-content app-feature-ad img,.article-content app-feature img {
+    width: 200px;
+    height: 100%;
+    max-width: 100%; /* Ensure the image doesn't exceed its natural width */
+}
+
+
+
+
+
