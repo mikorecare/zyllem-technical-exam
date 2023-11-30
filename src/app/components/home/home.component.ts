@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private api:ApiService
       ) { }
-    
+      
+      isLoading:boolean = true;
       private results!: Article[];
       private filteredResults!:Article[];
       filter:string = 'All';
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit {
             })
             .catch((err)=>{
                 console.warn(err)
+                this.isLoading = false
             })
         }
     
@@ -89,8 +91,9 @@ export class HomeComponent implements OnInit {
           const filteredType: ArticleType = this.filter.toUpperCase() as ArticleType;
           this.filteredResults = this.results.filter(res => res.type === filteredType);
         }
-      
+        this.isLoading = false
         this.cdr.detectChanges();
+        
       }
     
       goto(){
