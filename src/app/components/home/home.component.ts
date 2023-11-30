@@ -65,11 +65,11 @@ export class HomeComponent implements OnInit {
         let videoArticle : VideoArticle[]= results.filter(res =>res.type === "VIDEO") as VideoArticle [];
         this.videoArticleHighlight = videoArticle.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime())[0];
         
-        // let index = results.findIndex(article=> article._id === this.videoArticleHighlight._id);
-        // if (index !== -1) {
+        let index = results.findIndex(article=> article._id === this.videoArticleHighlight._id);
+        if (index !== -1) {
           
-        //   results.splice(index, 1);
-        // }
+          results.splice(index, 1);
+        }
         
         this.results = results;
     
