@@ -6,7 +6,9 @@
     <!-- Feel free to remove this holder -->
     <h3 class="title-h3">Put below a recently published video article given there is one or more video article types in the list.</h3>
     <ng-container *ngIf="isLoading">
-      <h1 class="spinner" style="margin: 0 auto;"></h1>
+      <h1 class="spinner"></h1>
+      <br>
+      <h2 class="spinner-text">Please wait for a moment...</h2>
     </ng-container>
     <div class="article-video" (click)="goto()">
 

@@ -121,7 +121,8 @@ article-renderer-component{
   }
 .spinner-text{
     margin: 0 auto;
-    color: rgb(128,128,128);
+    width: max-content;
+    color: rgb(83, 83, 83);
 }  
 
   @keyframes spin {
