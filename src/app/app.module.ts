@@ -10,7 +10,7 @@ import { ArticleModule } from './components/articles';
 import { HomeComponent } from './home.component';
 import { CommonModule } from '@angular/common';
 import { ViewDetailsComponent } from './components/view-details/view-details.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +23,9 @@ import { ViewDetailsComponent } from './components/view-details/view-details.com
     ArticleModule,
     FormsModule,
     BrowserModule,
+    HttpClientModule
   ],
-  providers: [ZyllemApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
