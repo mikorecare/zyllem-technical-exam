@@ -45,34 +45,11 @@ export class ArticleRendererComponent implements OnChanges {
                 const routerLink = `/details`;
                 hostElement.classList.add('article-item');
                 hostElement.addEventListener('click', () => 
-                  this.route.navigate([routerLink],{queryParams:{info:encodeURIComponent(JSON.stringify(article))}})
+                  this.route.navigate([routerLink],{queryParams:{id:article._id}})
                 );
                 
                 hostElement.insertAdjacentElement("afterbegin", this.addArticleTitle(article.title));
-
-                switch (article.type) {
-                    case "FEATURED_AD":
-                      if ('adBannerUrl' in article) {
-                        componentRef.instance.article = article as FeaturedAdArticle;
-                      }
-                      break;
-                    case "FEATURED":
-                      if ('featureImgUrl' in article) {
-                        componentRef.instance.article = article as FeaturedArticle;
-                      }
-                      break;
-                    case "VIDEO":
-                      if ('videoUrl' in article) {
-                        componentRef.instance.article = article as VideoArticle;
-                      }
-                      break;
-                    case "NORMAL":
-                        if ('description' in article) {
-                          componentRef.instance.article = article as NormalArticle;
-                        }
-                    break;
-           
-                  }
+                componentRef.instance.article = article 
                 componentRef.changeDetectorRef.detectChanges();
             } else {
                 console.warn(`component not implemented yet for this type ${article.type}.`);

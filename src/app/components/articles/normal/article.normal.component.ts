@@ -7,7 +7,9 @@ import { AbstractArticleComponent } from "../abstract.article.component";
     selector: 'article-normal-component',
     templateUrl: './article.normal.component.html'
 })
-export class ArticleNormalComponent extends AbstractArticleComponent {
+export class ArticleNormalComponent extends AbstractArticleComponent{
 
     @Input() article!: NormalArticle;
+
+    
 }

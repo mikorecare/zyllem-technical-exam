@@ -1,5 +1,5 @@
 
-<article class="main-body">
+<article class="main-body" *ngIf="article">
     <div class="article-container">
         <h2 class="article-title">{{article.title}}</h2>
         <p>
@@ -7,11 +7,12 @@
             <span> · </span>
             <span>{{article.publishedAt | date:'MMMM dd, yyyy'}}</span>
         </p>    
-        <div class="article-content" [ngSwitch]="article.type"> 
-            <article-normal-component *ngSwitchCase="'NORMAL'" [article]="article" class="normal"></article-normal-component>
+        <div class="article-content" > 
+            <!-- <article-normal-component *ngSwitchCase="'NORMAL'" [article]="article" class="normal"></article-normal-component>
             <article-video-component *ngSwitchCase="'VIDEO'" [article]="article" class="video"></article-video-component>
             <app-feature *ngSwitchCase="'FEATURED'" [article]="article" class="feature"></app-feature>
-            <app-feature-ad *ngSwitchCase="'FEATURED_AD'" [article]="article" class="feature-ad"></app-feature-ad>
+            <app-feature-ad *ngSwitchCase="'FEATURED_AD'" [article]="article" class="feature-ad"></app-feature-ad> -->
+            <article-renderer-component [articles]="arrArticle"></article-renderer-component>
         </div>
     </div>
 </article>

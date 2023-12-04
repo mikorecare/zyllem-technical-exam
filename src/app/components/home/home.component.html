@@ -25,11 +25,8 @@
     <div class="article-container">
       <label for="article-selector">Filter By: </label>
       <select name="article-selector" class="article-selector" [(ngModel)]="filter" (change)="articleFilter()">
-        <option>All</option>
-        <option>Normal</option>
-        <option>Video</option>
-        <option>Featured</option>
-        <option>Featured_Ad</option>
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let choice of choices; " [value]="choice[0]">{{choice[1]}}</option>
       </select>
       <div class="article-list-holder">
         <ng-container *ngIf="isLoading">

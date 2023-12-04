@@ -21,10 +21,14 @@ export class HomeComponent implements OnInit {
         private global:Global
       ) { }
       
+      choices:[ArticleType,string][]=[[ArticleType.VIDEO,"Video"],
+      [ArticleType.NORMAL,"Normal"],
+      [ArticleType.FEATURED,"Featured"],
+      [ArticleType.FEATURED_AD,"Featured Ad"]]
       isLoading:boolean = true;
-      private results!: Article[];
+      private results: Article[] = [];
       private filteredResults!:Article[];
-      filter:string = 'All';
+      filter:ArticleType | null = null;
       videoArticleHighlight!: VideoArticle;
       test:any = []
     
@@ -47,44 +51,51 @@ export class HomeComponent implements OnInit {
         //   });
       }
 
-       async getArticles(){
-          if(this.global.articleList.length > 0){
-            console.log("GLOBAL ARTICLE",this.global.articleList)
-            this.results = [...this.global.articleList]
-            this.videoArticleHighlights(this.results);
-          }
-          else{
+      private async getArticles(){
+          // if(this.global.articleList.length > 0){
+          //   console.log("GLOBAL ARTICLE",this.global.articleList)
+          //   this.results = [...this.global.articleList]
+          //   this.videoArticleHighlights(this.results);
+          // }
+          // else{
             await this.api.get('/articles')
             .then((result:Article[])=>{
+              result.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime());
               this.global.articleList = [...result]
-                console.log("RESULT:    ",result)
-                if(result){
-                    
-                    this.videoArticleHighlights(result)  
-                  }
+              console.log("RESULT:    ",result)
+              let isV
+              for(const item of result){
+                console.log("ITEM", item)
+                if(item.type === ArticleType.VIDEO && !this.videoArticleHighlight){
+                  this.videoArticleHighlight = item as VideoArticle;
+                }
+                else{
+                  this.results.push(item)
+                }
+              }
+              this.articleFilter()  
             })
             .catch((err)=>{
                 console.warn(err)
                 this.isLoading = false
             })
-          }
+          // }
          
         }
     
-       videoArticleHighlights(results:Article[]):void{
+      private videoArticleHighlights(results:Article[]):void{
         console.log("Video Article Highlights: <BEFORE>", results.length)
-        let videoArticle : VideoArticle[]= results.filter(res =>res.type === "VIDEO") as VideoArticle [];
-        this.videoArticleHighlight = videoArticle.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime())[0];
         
-        let index = results.findIndex(article=> article._id === this.videoArticleHighlight._id);
-        if (index !== -1) {
+        // let videoArticle : VideoArticle[]= results.filter(res =>res.type === "VIDEO") as VideoArticle [];
+
+        // this.videoArticleHighlight = videoArticle.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime())[0];
+        // let index = results.findIndex(article=> article._id === this.videoArticleHighlight._id);
+        // if (index !== -1) {
           
-          results.splice(index, 1);
-        }
-        
-        this.results = results;
-    
-    
+        //   results.splice(index, 1);
+        // }  
+        // this.results = results;
+       this
         this.articleFilter();
       }
     
@@ -94,11 +105,10 @@ export class HomeComponent implements OnInit {
     
       articleFilter(): void {
         console.log("Filter Triggered")
-        if (this.filter === 'All') {
+        if (this.filter === null) {
           this.filteredResults = this.results;
         } else {
-          const filteredType: ArticleType = this.filter.toUpperCase() as ArticleType;
-          this.filteredResults = this.results.filter(res => res.type === filteredType);
+          this.filteredResults = this.results.filter(res => res.type === this.filter);
         }
         this.isLoading = false
         this.cdr.detectChanges();
