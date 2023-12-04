@@ -30,9 +30,21 @@ article-renderer-component{
       transform: translateX(0);
     }
   }
+  @keyframes fadeInAndScale {
+    0% {
+    text-align: center;  
+    opacity: 0;
+    transform: scale(0.5);
+    }
+    100% {
+    text-align: center;
+    opacity: 1;
+    transform: scale(1);
+    }
+  }
 
 .article-video{
-    animation: slideInFromRight 2s ease-in-out;
+    animation: fadeInAndScale 2s ease-in-out;
 }
 
 .title-h2, .title-h3{
