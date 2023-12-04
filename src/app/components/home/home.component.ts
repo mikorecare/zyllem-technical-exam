@@ -6,7 +6,7 @@ import {
   import { ZyllemApiService } from "../../app.service";
   import { Article, ArticleType, VideoArticle } from '../../model/article';
   import {Router} from '@angular/router'
-
+  import { Global } from '../module/global';
 @Component({
   selector: 'app-view-details',
   templateUrl: './home.component.html',
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
         // private readonly apiService: ZyllemApiService,
         private readonly cdr: ChangeDetectorRef,
         private router: Router,
-        private api:ApiService
+        private api:ApiService,
+        private global:Global
       ) { }
       
       isLoading:boolean = true;
@@ -47,23 +48,31 @@ export class HomeComponent implements OnInit {
       }
 
        async getArticles(){
-           await this.api.get('/articles')
-            .then((result)=>{
+          if(this.global.articleList.length > 0){
+            console.log("GLOBAL ARTICLE",this.global.articleList)
+            this.results = [...this.global.articleList]
+            this.videoArticleHighlights(this.results);
+          }
+          else{
+            await this.api.get('/articles')
+            .then((result:Article[])=>{
+              this.global.articleList = [...result]
                 console.log("RESULT:    ",result)
                 if(result){
+                    
                     this.videoArticleHighlights(result)  
                   }
-                  console.log("video article highlight",this.videoArticleHighlight);
-                  console.log("final article array",this.results);
             })
             .catch((err)=>{
                 console.warn(err)
                 this.isLoading = false
             })
+          }
+         
         }
     
        videoArticleHighlights(results:Article[]):void{
-        console.log("Video Article Highlights: <BEFORE>", results)
+        console.log("Video Article Highlights: <BEFORE>", results.length)
         let videoArticle : VideoArticle[]= results.filter(res =>res.type === "VIDEO") as VideoArticle [];
         this.videoArticleHighlight = videoArticle.sort((a,b)=> new Date(b.publishedAt).getTime()- new Date(a.publishedAt).getTime())[0];
         
