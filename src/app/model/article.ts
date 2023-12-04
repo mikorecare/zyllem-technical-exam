@@ -3,7 +3,7 @@ export abstract class Article {
     _id!: string;
     title!: string;
     author!: string;
-    publishedAt!: string; //date time in ISO format 
+    publishedAt!: Date; //date time in ISO format 
     url!: string;
     type!: ArticleType;
 }
