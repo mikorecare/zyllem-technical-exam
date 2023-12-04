@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 import { ViewDetailsComponent } from './components/view-details/view-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Global } from './components/module/global';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [Global],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
